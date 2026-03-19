@@ -10,7 +10,7 @@ JavaScript: jsLogo,
 'React.js': reactLogo,
 }
 
-function Skills({ content, skills }) {
+function Skills({ content, skills = [] }) {
 return (
     <section id="skills" className="section fade-up">
     <div className="section-center">
@@ -21,14 +21,17 @@ return (
     <div className="skill-grid">
         {skills
         .filter((item) => logos[item.title])
-        .map((item) => (
-            <div key={item.title} className="skill-card glass hover-lift">
+        .map((item, index) => (
+            <div
+            key={item.title}
+            className="skill-card glass hover-lift fade-up stagger-card"
+              style={{ transitionDelay: `${index * 120}ms` }}
+            >
             <div className="skill-badge">
                 <img src={logos[item.title]} alt={item.title} className="skill-icon" />
             </div>
 
             <h3 style={{ margin: '0 0 10px 0' }}>{item.title}</h3>
-
             <p className="small-text">{item.desc}</p>
             </div>
         ))}

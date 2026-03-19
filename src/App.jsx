@@ -35,6 +35,25 @@ function App() {
     document.head.appendChild(favicon)
   }, [])
 
+  useEffect(() => {
+    const elements = document.querySelectorAll('.fade-up')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show')
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   const content = useMemo(() => getPortfolioContent(lang), [lang])
 
   if (loading) {
@@ -48,52 +67,52 @@ function App() {
 
   return (
     <>
-  <div className="animated-bg"></div>
-<div className="top-glow"></div>
-<div className="light-rays"></div>
-<div className="sea-dust"></div>
+      <div className="animated-bg"></div>
+      <div className="top-glow"></div>
+      <div className="light-rays"></div>
+      <div className="sea-dust"></div>
 
-<div className="bubble-layer">
-  <span className="bubble b1"></span>
-  <span className="bubble b2"></span>
-  <span className="bubble b3"></span>
-  <span className="bubble b4"></span>
-  <span className="bubble b5"></span>
-  <span className="bubble b6"></span>
-  <span className="bubble b7"></span>
-  <span className="bubble b8"></span>
-</div>
+      <div className="bubble-layer">
+        <span className="bubble b1"></span>
+        <span className="bubble b2"></span>
+        <span className="bubble b3"></span>
+        <span className="bubble b4"></span>
+        <span className="bubble b5"></span>
+        <span className="bubble b6"></span>
+        <span className="bubble b7"></span>
+        <span className="bubble b8"></span>
+      </div>
 
-<div className="fish-layer">
-  <img src={fish1} alt="fish" className="fish fish-a" />
-  <img src={fish2} alt="fish" className="fish fish-b" />
-  <img src={fish3} alt="fish" className="fish fish-c" />
-  <img src={fish4} alt="fish" className="fish fish-d" />
-  <img src={fish2} alt="fish" className="fish fish-e" />
-  <img src={fish3} alt="fish" className="fish fish-f" />
-</div>
+      <div className="fish-layer">
+        <img src={fish1} alt="fish" className="fish fish-a" />
+        <img src={fish2} alt="fish" className="fish fish-b" />
+        <img src={fish3} alt="fish" className="fish fish-c" />
+        <img src={fish4} alt="fish" className="fish fish-d" />
+        <img src={fish2} alt="fish" className="fish fish-e" />
+        <img src={fish3} alt="fish" className="fish fish-f" />
+      </div>
 
-  <div className="page">
-    <Navbar lang={lang} setLang={setLang} content={content} />
-    <Hero content={content} />
-    <About content={content} />
-    <Skills content={content} skills={content.skills} />
-    <Projects
-      content={content}
-      projects={content.projects}
-      activeProject={activeProject}
-      setActiveProject={setActiveProject}
-    />
-    <FAQ
-      content={content}
-      faqs={content.faqs}
-      openFaq={openFaq}
-      setOpenFaq={setOpenFaq}
-    />
-    <Contact content={content} />
-    <Footer content={content} />
-  </div>
-  </>
+      <div className="page">
+        <Navbar lang={lang} setLang={setLang} content={content} />
+        <Hero content={content} />
+        <About content={content} />
+        <Skills content={content} skills={content.skills} />
+        <Projects
+          content={content}
+          projects={content.projects}
+          activeProject={activeProject}
+          setActiveProject={setActiveProject}
+        />
+        <FAQ
+          content={content}
+          faqs={content.faqs}
+          openFaq={openFaq}
+          setOpenFaq={setOpenFaq}
+        />
+        <Contact content={content} />
+        <Footer content={content} />
+      </div>
+    </>
   )
 }
 
