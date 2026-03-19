@@ -504,19 +504,116 @@ body {
   transform: translateY(-2px);
 }
 
-.fade-up {
+.about-panel {
+  animation: softRise 0.9s ease both;
+}
+
+.about-eyebrow {
+  animation: fadeSlideUp 0.7s ease both;
+  animation-delay: 0.1s;
+}
+
+.about-title {
+  animation: fadeSlideUp 0.8s ease both;
+  animation-delay: 0.2s;
+}
+
+.about-desc {
+  animation: fadeSlideUp 0.9s ease both;
+  animation-delay: 0.35s;
+}
+
+.about-card-1,
+.about-card-2 {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
+  transform: translateY(28px) scale(0.98);
+  animation: cardPop 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
+.about-card-1 {
+  animation-delay: 0.5s;
 }
 
-.stagger-card {
-  will-change: transform, opacity;
+.about-card-2 {
+  animation-delay: 0.75s;
+}
+
+.skills-head {
+  animation: softRise 0.8s ease both;
+}
+
+.skills-eyebrow {
+  animation: fadeSlideUp 0.7s ease both;
+  animation-delay: 0.1s;
+}
+
+.skills-title {
+  animation: fadeSlideUp 0.8s ease both;
+  animation-delay: 0.2s;
+}
+
+.skill-reveal {
+  opacity: 0;
+  transform: translateY(34px) scale(0.96);
+  animation: skillCardReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.skill-reveal:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softRise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes cardPop {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes skillCardReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(34px) scale(0.96);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .float-card {

@@ -19,11 +19,13 @@ function App() {
   const [activeProject, setActiveProject] = useState(0)
   const [openFaq, setOpenFaq] = useState(null)
 
+  // loading screen
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500)
     return () => clearTimeout(timer)
   }, [])
 
+  // title + favicon
   useEffect(() => {
     document.title = 'Muhammad Lutfan | Portfolio'
 
@@ -35,7 +37,10 @@ function App() {
     document.head.appendChild(favicon)
   }, [])
 
+  // 🔥 ANIMASI SCROLL FIX DI SINI
   useEffect(() => {
+    if (loading) return
+
     const elements = document.querySelectorAll('.fade-up')
 
     const observer = new IntersectionObserver(
@@ -46,13 +51,13 @@ function App() {
           }
         })
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     )
 
     elements.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
-  }, [])
+  }, [loading])
 
   const content = useMemo(() => getPortfolioContent(lang), [lang])
 

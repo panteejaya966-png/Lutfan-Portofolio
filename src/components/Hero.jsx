@@ -2,7 +2,7 @@ import myPhoto from '../assets/foto-saya.jpeg'
 
 function Hero({ content }) {
 return (
-    <section id="home" className="hero hero-grid fade-up">
+    <section id="home" className="hero hero-grid">
     <div className="hero-visual">
         <div className="avatar-shell glass float-card">
         <div className="avatar-ring"></div>
