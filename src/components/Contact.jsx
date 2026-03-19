@@ -39,7 +39,7 @@ return (
 
 <p className="contact-line">
     <FaGithub className="contact-icon" />
-    github.com/usernamekamu
+    github.com/panteejaya966-png
 </p>
 </div>
     </div>
