@@ -3,6 +3,14 @@ import myPhoto from '../assets/foto-saya.jpeg'
 function Hero({ content }) {
 return (
     <section id="home" className="hero hero-grid fade-up">
+    <div className="hero-visual">
+        <div className="avatar-shell glass float-card">
+        <div className="avatar-ring"></div>
+        <div className="avatar-ring avatar-ring-2"></div>
+        <img src={myPhoto} alt="profile" className="avatar" />
+        </div>
+    </div>
+
     <div className="hero-copy">
         <div className="badge">{content.badge}</div>
 
@@ -36,14 +44,6 @@ return (
             <span className="hero-stat-number">∞</span>
             <span className="hero-stat-label">Explore</span>
         </div>
-        </div>
-    </div>
-
-    <div className="hero-visual">
-        <div className="avatar-shell glass float-card">
-        <div className="avatar-ring"></div>
-        <div className="avatar-ring avatar-ring-2"></div>
-        <img src={myPhoto} alt="profile" className="avatar" />
         </div>
     </div>
     </section>
