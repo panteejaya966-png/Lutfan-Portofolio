@@ -8,10 +8,10 @@ import FAQ from './components/FAQ'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { getPortfolioContent } from './data/portofolioData'
-import fish1 from '../src/assets/fish1.svg'
-import fish2 from '../src/assets/fish2.svg'
-import fish3 from '../src/assets/fish3.svg'
-import fish4 from '../src/assets/fish4.svg'
+import fish1 from './assets/fish1.svg'
+import fish2 from './assets/fish2.svg'
+import fish3 from './assets/fish3.svg'
+import fish4 from './assets/fish4.svg'
 
 function App() {
   const [loading, setLoading] = useState(true)
