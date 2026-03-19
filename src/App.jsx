@@ -73,27 +73,6 @@ function App() {
   <img src={fish3} alt="fish" className="fish fish-f" />
 </div>
 
-<div className="page">
-  <Navbar lang={lang} setLang={setLang} content={content} />
-  <Hero content={content} />
-  <About content={content} />
-  <Skills content={content} skills={content.skills} />
-  <Projects
-    content={content}
-    projects={content.projects}
-    activeProject={activeProject}
-    setActiveProject={setActiveProject}
-  />
-  <FAQ
-    content={content}
-    faqs={content.faqs}
-    openFaq={openFaq}
-    setOpenFaq={setOpenFaq}
-  />
-  <Contact content={content} />
-  <Footer content={content} />
-</div>
-
   <div className="page">
     <Navbar lang={lang} setLang={setLang} content={content} />
     <Hero content={content} />
