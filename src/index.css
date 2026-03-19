@@ -1148,4 +1148,19 @@ body {
   .hero-copy {
     text-align: left;
   }
+
+  @media (max-width: 768px) {
+    .hero-visual {
+      margin-bottom: 10px;
+    }
+
+    .hero-copy {
+      margin-top: 0;
+    }
+
+    .badge {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+  }
 }
