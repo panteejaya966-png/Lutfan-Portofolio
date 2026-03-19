@@ -25,24 +25,25 @@ const copy = {
     'Saya tertarik pada frontend development dan senang membuat tampilan web yang rapi dan proyek yang sudah saya kerjakan.',
     aboutCard2:
     'Website ini saya buat sebagai portofolio untuk menampilkan hasil belajar dan proyek yang sudah saya kerjakan',
-    skillsTitle: [
-        {
-            title: 'HTML',
-            desc: 'Digunakan sebagai struktur dasar dalam membangun halaman web.',
-        },
-        {
-            title: 'CSS',
-            desc: 'Digunakan untuk mengatur tampilan dan layout agar lebih menarik dan responsif.',
-        },
-        {
-            title: 'JavaScript',
-            desc: 'Digunakan untuk menambahkan interaksi dan logika pada website.',
-        },
-        {
-            title: 'React.js',
-            desc: 'Digunakan untuk membangun tampilan web modern berbasis komponen.',
-        },
-    ],
+    skillsTitle: 'Keahlian',
+skills: [
+{
+    title: 'HTML',
+    desc: 'Digunakan sebagai struktur dasar dalam membangun halaman web.',
+},
+{
+    title: 'CSS',
+    desc: 'Digunakan untuk mengatur tampilan dan layout agar lebih menarik dan responsif.',
+},
+{
+    title: 'JavaScript',
+    desc: 'Digunakan untuk menambahkan interaksi dan logika pada website.',
+},
+{
+    title: 'React.js',
+    desc: 'Digunakan untuk membangun tampilan web modern berbasis komponen.',
+},
+],
     projectsTitle: 'Proyek & Karya',
     projectTag: 'Proyek Pilihan',
     faqTitle: 'Pertanyaan Umum',
@@ -78,24 +79,25 @@ const copy = {
     aboutCard2:
     'This website is built as a portofolio to showcase my learning progress and projects i have worked on.',
 
-    skillsTitle: [
-        {
-            title: 'HTML',
-            desc: 'Used as the basic structure for building web pages.',
-        },
-        {
-            title: 'CSS',
-            desc: 'Used to style and layout web pages to make them more attractive and responsive.',
-        },
-        {
-            title: 'JavaScript',
-            desc: 'Used to add interactivity and logic to website.',
-        },
-        {
-            title: 'React.js',
-            desc: 'Used to build modern web interfaces with a component-based approach.',
-        },
-    ],
+    skillsTitle: 'Skills',
+skills: [
+{
+    title: 'HTML',
+    desc: 'Used as the basic structure for building web pages.',
+},
+{
+    title: 'CSS',
+    desc: 'Used to style and layout web pages to make them more attractive and responsive.',
+},
+{
+    title: 'JavaScript',
+    desc: 'Used to add interactivity and logic to websites.',
+},
+{
+    title: 'React.js',
+    desc: 'Used to build modern web interfaces with a component-based approach.',
+},
+],
     projectsTitle: 'Projects & Works',
     projectTag: 'Featured Project',
     faqTitle: 'FAQ',
@@ -111,14 +113,6 @@ const t = copy[lang]
 
 return {
     ...t,
-    skills: [
-    { icon: '🌊', title: 'HTML' },
-    { icon: '🫧', title: 'CSS' },
-    { icon: '🐚', title: 'JavaScript' },
-    { icon: '⚓', title: 'React.js' },
-    { icon: '🐠', title: 'Responsive UI' },
-    { icon: '💎', title: 'UI/UX Basics' },
-    ],
     projects: [
     {
         title: 'Ocean Portfolio',
