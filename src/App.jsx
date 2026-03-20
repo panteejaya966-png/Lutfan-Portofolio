@@ -71,45 +71,56 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (loading) return
+  if (loading) return
 
-    const dot = document.querySelector('.cursor-dot')
-    const ring = document.querySelector('.cursor-ring')
+  const fish = document.querySelector('.cursor-fish')
+  const trail = document.querySelector('.cursor-trail')
 
-    if (!dot || !ring) return
+  if (!fish || !trail) return
 
-    let mouseX = window.innerWidth / 2
-    let mouseY = window.innerHeight / 2
-    let ringX = mouseX
-    let ringY = mouseY
-    let animationFrameId
+  let mouseX = window.innerWidth / 2
+  let mouseY = window.innerHeight / 2
+  let fishX = mouseX
+  let fishY = mouseY
+  let lastAngle = 0
+  let rafId
 
-    const moveCursor = (e) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
+  const moveCursor = (e) => {
+    mouseX = e.clientX
+    mouseY = e.clientY
+  }
+
+  const animate = () => {
+    fishX += (mouseX - fishX) * 0.08
+    fishY += (mouseY - fishY) * 0.08
+
+    const dx = mouseX - fishX
+    const dy = mouseY - fishY
+    const angle = Math.atan2(dy, dx) * 180 / Math.PI
+
+    if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+      lastAngle = angle
     }
 
-    const animate = () => {
-      ringX += (mouseX - ringX) * 0.1
-      ringY += (mouseY - ringY) * 0.1
+    fish.style.left = `${fishX}px`
+    fish.style.top = `${fishY}px`
+    fish.style.transform = `translate(-50%, -50%) rotate(${lastAngle}deg)`
 
-      dot.style.left = `${mouseX}px`
-      dot.style.top = `${mouseY}px`
+    trail.style.left = `${fishX - 18}px`
+    trail.style.top = `${fishY + 4}px`
+    trail.style.transform = `translate(-50%, -50%) rotate(${lastAngle}deg)`
 
-      ring.style.left = `${ringX}px`
-      ring.style.top = `${ringY}px`
+    rafId = requestAnimationFrame(animate)
+  }
 
-      animationFrameId = requestAnimationFrame(animate)
-    }
+  window.addEventListener('mousemove', moveCursor)
+  animate()
 
-    window.addEventListener('mousemove', moveCursor)
-    animationFrameId = requestAnimationFrame(animate)
-
-    return () => {
-      window.removeEventListener('mousemove', moveCursor)
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [loading])
+  return () => {
+    window.removeEventListener('mousemove', moveCursor)
+    cancelAnimationFrame(rafId)
+  }
+}, [loading])
 
   const content = useMemo(() => getPortfolioContent(lang), [lang])
 
@@ -128,8 +139,12 @@ function App() {
       <div className="top-glow"></div>
       <div className="light-rays"></div>
       <div className="sea-dust"></div>
-      <div className="cursor-dot"></div>
-      <div className="cursor-ring"></div>
+      <div className="cursor-fish"></div>
+      <div className="cursor-trail">
+        <span className="trail-bubble tb1"></span>
+        <span className="trail-bubble tb2"></span>
+        <span className="trail-bubble tb3"></span>
+      </div>
 
       <div className="bubble-layer">
         <span className="bubble b1"></span>
