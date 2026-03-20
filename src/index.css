@@ -1255,6 +1255,7 @@ body {
   .hero-copy {
     text-align: left;
   }
+}
 
   @media (max-width: 768px) {
     .hero-visual {
@@ -1328,7 +1329,6 @@ body {
   }
 }
 
-/* ===== PLANKTON ===== */
 .plankton-layer {
   position: fixed;
   inset: 0;
@@ -1339,73 +1339,105 @@ body {
 
 .plankton {
   position: absolute;
+  bottom: -40px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(125, 211, 252, 1);
-  box-shadow: 0 0 10px rgba(125, 211, 252, 1),
-              0 0 20px rgba(56, 189, 248, 0.8),
-              0 0 40px rgba(14, 165, 233, 0.6);
-  opacity: 0.8;
-  animation: planktonFloat linear infinite;
+  background: rgba(125, 211, 252, 0.95);
+  box-shadow:
+    0 0 8px rgba(125, 211, 252, 0.9),
+    0 0 18px rgba(56, 189, 248, 0.7),
+    0 0 34px rgba(14, 165, 233, 0.45);
+  opacity: 0;
+  animation: planktonFloat 14s linear infinite;
+}
+
+.plankton:nth-child(2n) {
+  width: 4px;
+  height: 4px;
+  opacity: 0.6;
 }
 
 .plankton:nth-child(3n) {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
+
+.plankton:nth-child(5n) {
+  width: 3px;
+  height: 3px;
+  opacity: 0.45;
+}
+
 .plankton:nth-child(4n) {
-  width: 2px;
-  height: 2px;
-  opacity: 0.4;
+  background: rgba(186, 230, 253, 0.95);
+  box-shadow:
+    0 0 8px rgba(186, 230, 253, 0.95),
+    0 0 20px rgba(125, 211, 252, 0.75),
+    0 0 38px rgba(56, 189, 248, 0.45);
 }
 
-/* RANDOM POSISI + SPEED */
-.p0 { left: 5%; animation-duration: 12s; animation-delay: 0s; }
-.p1 { left: 12%; animation-duration: 18s; animation-delay: 2s; }
-.p2 { left: 20%; animation-duration: 14s; animation-delay: 4s; }
-.p3 { left: 30%; animation-duration: 20s; animation-delay: 1s; }
-.p4 { left: 40%; animation-duration: 16s; animation-delay: 3s; }
-.p5 { left: 50%; animation-duration: 22s; animation-delay: 5s; }
-.p6 { left: 60%; animation-duration: 15s; animation-delay: 2s; }
-.p7 { left: 70%; animation-duration: 19s; animation-delay: 6s; }
-.p8 { left: 80%; animation-duration: 17s; animation-delay: 1s; }
-.p9 { left: 90%; animation-duration: 21s; animation-delay: 4s; }
+/* posisi banyak biar rame */
+.p0  { left: 4%;  animation-duration: 12s; animation-delay: 0s; }
+.p1  { left: 8%;  animation-duration: 15s; animation-delay: 2s; }
+.p2  { left: 12%; animation-duration: 13s; animation-delay: 4s; }
+.p3  { left: 16%; animation-duration: 18s; animation-delay: 1s; }
+.p4  { left: 20%; animation-duration: 14s; animation-delay: 3s; }
+.p5  { left: 24%; animation-duration: 17s; animation-delay: 5s; }
+.p6  { left: 28%; animation-duration: 12s; animation-delay: 6s; }
+.p7  { left: 32%; animation-duration: 19s; animation-delay: 2s; }
+.p8  { left: 36%; animation-duration: 16s; animation-delay: 1s; }
+.p9  { left: 40%; animation-duration: 20s; animation-delay: 4s; }
+.p10 { left: 44%; animation-duration: 13s; animation-delay: 3s; }
+.p11 { left: 48%; animation-duration: 18s; animation-delay: 7s; }
+.p12 { left: 52%; animation-duration: 15s; animation-delay: 5s; }
+.p13 { left: 56%; animation-duration: 21s; animation-delay: 2s; }
+.p14 { left: 60%; animation-duration: 14s; animation-delay: 6s; }
+.p15 { left: 64%; animation-duration: 17s; animation-delay: 1s; }
+.p16 { left: 68%; animation-duration: 12s; animation-delay: 8s; }
+.p17 { left: 72%; animation-duration: 19s; animation-delay: 4s; }
+.p18 { left: 76%; animation-duration: 16s; animation-delay: 7s; }
+.p19 { left: 80%; animation-duration: 22s; animation-delay: 2s; }
+.p20 { left: 84%; animation-duration: 14s; animation-delay: 5s; }
+.p21 { left: 88%; animation-duration: 18s; animation-delay: 3s; }
+.p22 { left: 92%; animation-duration: 13s; animation-delay: 6s; }
+.p23 { left: 96%; animation-duration: 20s; animation-delay: 1s; }
+.p24 { left: 6%;  animation-duration: 17s; animation-delay: 9s; }
+.p25 { left: 14%; animation-duration: 12s; animation-delay: 10s; }
+.p26 { left: 22%; animation-duration: 15s; animation-delay: 11s; }
+.p27 { left: 30%; animation-duration: 18s; animation-delay: 12s; }
+.p28 { left: 38%; animation-duration: 14s; animation-delay: 13s; }
+.p29 { left: 46%; animation-duration: 19s; animation-delay: 14s; }
+.p30 { left: 54%; animation-duration: 13s; animation-delay: 15s; }
+.p31 { left: 62%; animation-duration: 21s; animation-delay: 16s; }
+.p32 { left: 70%; animation-duration: 16s; animation-delay: 17s; }
+.p33 { left: 78%; animation-duration: 18s; animation-delay: 18s; }
+.p34 { left: 86%; animation-duration: 14s; animation-delay: 19s; }
+.p35 { left: 94%; animation-duration: 20s; animation-delay: 20s; }
 
-/* sisanya biar random */
-.p10 { left: 15%; animation-duration: 13s; }
-.p11 { left: 25%; animation-duration: 18s; }
-.p12 { left: 35%; animation-duration: 16s; }
-.p13 { left: 45%; animation-duration: 20s; }
-.p14 { left: 55%; animation-duration: 14s; }
-.p15 { left: 65%; animation-duration: 19s; }
-.p16 { left: 75%; animation-duration: 17s; }
-.p17 { left: 85%; animation-duration: 22s; }
-.p18 { left: 95%; animation-duration: 15s; }
-.p19 { left: 10%; animation-duration: 21s; }
-
-/* GERAK NGAMBANG */
 @keyframes planktonFloat {
   0% {
-    transform: translateY(100vh) translateX(0) scale(0.6);
+    transform: translateY(0) translateX(0) scale(0.6);
     opacity: 0;
   }
-
-  20% {
-    opacity: 0.7;
+  10% {
+    opacity: 0.55;
   }
-
-  50% {
-    transform: translateY(50vh) translateX(20px) scale(1);
+  25% {
+    transform: translateY(-22vh) translateX(12px) scale(1);
   }
-
-  75% {
-    transform: translateY(20vh) translateX(-15px);
+  45% {
+    transform: translateY(-45vh) translateX(-10px) scale(0.95);
   }
-
+  65% {
+    transform: translateY(-70vh) translateX(18px) scale(1.05);
+  }
+  85% {
+    transform: translateY(-95vh) translateX(-14px) scale(0.9);
+    opacity: 0.5;
+  }
   100% {
-    transform: translateY(-20vh) translateX(10px) scale(1.1);
+    transform: translateY(-120vh) translateX(8px) scale(1.08);
     opacity: 0;
   }
-}
 }
