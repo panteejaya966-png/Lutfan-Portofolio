@@ -89,13 +89,7 @@ function App() {
       </div>
 
       <div className="plankton-layer back">
-  {Array.from({ length: 50 }).map((_, i) => (
-    <span key={i} className={`plankton p${i}`}></span>
-  ))}
-</div>
-
-<div className="plankton-layer front">
-  {Array.from({ length: 40 }).map((_, i) => (
+  {Array.from({ length: 60 }).map((_, i) => (
     <span key={i} className={`plankton p${i}`}></span>
   ))}
 </div>
