@@ -978,6 +978,7 @@ body {
 /* HERO DEPTH */
 .hero-visual {
   position: relative;
+  margin-bottom: 0;
 }
 
 .avatar-shell {
@@ -1039,6 +1040,7 @@ body {
 
 .hero-copy {
   max-width: 640px;
+  margin-top: 0;
 }
 
 .badge {

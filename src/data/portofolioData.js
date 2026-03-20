@@ -9,7 +9,7 @@ const copy = {
     translate: 'EN',
     loading: 'Menyelam ...',
     brandName: 'Muhammad Lutfan',
-    brandSub: ' My Portfolio',
+    brandSub: ' My Portofolio',
     badge: 'Creative Frontend',
     title1: 'Belajar dan Berkembang',
     title2: 'di Dunia',
