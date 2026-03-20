@@ -2,7 +2,7 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; font-family: Arial, sans-serif; 
   background: #03111f;
-cursor: none
+cursor: none;
 }
 a { text-decoration: none; color: inherit; }
 button { font: inherit; }
@@ -1676,9 +1676,9 @@ body {
 
 .cursor-dot {
   position: fixed;
-  width: 10px;
-  height: 10px;
-  background: rgba(125, 211, 252, 0.9);
+  width: 20px;
+  height: 20px;
+  background: red;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
