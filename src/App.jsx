@@ -19,13 +19,11 @@ function App() {
   const [activeProject, setActiveProject] = useState(0)
   const [openFaq, setOpenFaq] = useState(null)
 
-  // loading screen
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500)
     return () => clearTimeout(timer)
   }, [])
 
-  // title + favicon
   useEffect(() => {
     document.title = 'Muhammad Lutfan | Portfolio'
 
@@ -37,7 +35,6 @@ function App() {
     document.head.appendChild(favicon)
   }, [])
 
-  // animasi scroll
   useEffect(() => {
     if (loading) return
 
@@ -59,7 +56,6 @@ function App() {
     return () => observer.disconnect()
   }, [loading])
 
-  // mouse parallax
   useEffect(() => {
     const handleMouseMove = (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2
@@ -74,44 +70,46 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
-useEffect(() => {
-  const dot = document.querySelector('.cursor-dot')
-  const ring = document.querySelector('.cursor-ring')
+  useEffect(() => {
+    if (loading) return
 
-  if (!dot || !ring) return
+    const dot = document.querySelector('.cursor-dot')
+    const ring = document.querySelector('.cursor-ring')
 
-  let mouseX = 0
-  let mouseY = 0
-  let ringX = 0
-  let ringY = 0
-  let animationFrameId
+    if (!dot || !ring) return
 
-  const moveCursor = (e) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
-  }
+    let mouseX = window.innerWidth / 2
+    let mouseY = window.innerHeight / 2
+    let ringX = mouseX
+    let ringY = mouseY
+    let animationFrameId
 
-  const animate = () => {
-    ringX += (mouseX - ringX) * 0.1
-    ringY += (mouseY - ringY) * 0.1
+    const moveCursor = (e) => {
+      mouseX = e.clientX
+      mouseY = e.clientY
+    }
 
-    dot.style.left = `${mouseX}px`
-    dot.style.top = `${mouseY}px`
+    const animate = () => {
+      ringX += (mouseX - ringX) * 0.1
+      ringY += (mouseY - ringY) * 0.1
 
-    ring.style.left = `${ringX}px`
-    ring.style.top = `${ringY}px`
+      dot.style.left = `${mouseX}px`
+      dot.style.top = `${mouseY}px`
 
+      ring.style.left = `${ringX}px`
+      ring.style.top = `${ringY}px`
+
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    window.addEventListener('mousemove', moveCursor)
     animationFrameId = requestAnimationFrame(animate)
-  }
 
-  window.addEventListener('mousemove', moveCursor)
-  animationFrameId = requestAnimationFrame(animate)
-
-  return () => {
-    window.removeEventListener('mousemove', moveCursor)
-    cancelAnimationFrame(animationFrameId)
-  }
-}, [])
+    return () => {
+      window.removeEventListener('mousemove', moveCursor)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [loading])
 
   const content = useMemo(() => getPortfolioContent(lang), [lang])
 

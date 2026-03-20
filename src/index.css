@@ -1677,6 +1677,7 @@ body {
 .cursor-dot {
   position: fixed;
   left: 0;
+  top: 0;
   width: 20px;
   height: 20px;
   background: rgba(125, 211, 252, 0.95);
@@ -1690,6 +1691,7 @@ body {
 .cursor-ring {
   position: fixed;
   left: 0;
+  top: 0;
   width: 40px;
   height: 40px;
   border: 1px solid rgba(125, 211, 252, 0.3);
