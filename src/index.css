@@ -1413,3 +1413,235 @@ body {
     opacity: 0;
   }
 }
+
+:root {
+  --mouse-x: 0;
+  --mouse-y: 0;
+}
+
+/* ===== GLOBAL CURRENT / ARUS LAUT ===== */
+.current-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.current {
+  position: absolute;
+  width: 140%;
+  height: 180px;
+  left: -20%;
+  border-radius: 999px;
+  filter: blur(26px);
+  opacity: 0.16;
+  transform: translateX(0);
+}
+
+.current-1 {
+  top: 18%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(125, 211, 252, 0.18),
+    rgba(56, 189, 248, 0.28),
+    rgba(125, 211, 252, 0.18),
+    transparent
+  );
+  animation: currentFlowA 18s ease-in-out infinite alternate;
+}
+
+.current-2 {
+  top: 46%;
+  height: 220px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(186, 230, 253, 0.12),
+    rgba(59, 130, 246, 0.2),
+    rgba(186, 230, 253, 0.12),
+    transparent
+  );
+  animation: currentFlowB 24s ease-in-out infinite alternate;
+}
+
+.current-3 {
+  top: 72%;
+  height: 160px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(14, 165, 233, 0.14),
+    rgba(96, 165, 250, 0.22),
+    rgba(14, 165, 233, 0.14),
+    transparent
+  );
+  animation: currentFlowC 20s ease-in-out infinite alternate;
+}
+
+@keyframes currentFlowA {
+  0% { transform: translateX(-4%) scaleX(1); }
+  100% { transform: translateX(4%) scaleX(1.04); }
+}
+
+@keyframes currentFlowB {
+  0% { transform: translateX(5%) scaleX(1.02); }
+  100% { transform: translateX(-5%) scaleX(0.98); }
+}
+
+@keyframes currentFlowC {
+  0% { transform: translateX(-3%) scaleX(1); }
+  100% { transform: translateX(6%) scaleX(1.03); }
+}
+
+/* ===== PLANKTON PREMIUM PARALLAX ===== */
+.plankton-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translate(
+    calc(var(--mouse-x) * 10px),
+    calc(var(--mouse-y) * 10px)
+  );
+  transition: transform 0.35s ease-out;
+}
+
+.plankton {
+  position: absolute;
+  bottom: -30px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(125, 211, 252, 0.95);
+  box-shadow:
+    0 0 8px rgba(125, 211, 252, 0.9),
+    0 0 16px rgba(56, 189, 248, 0.7),
+    0 0 28px rgba(14, 165, 233, 0.45);
+  opacity: 0;
+  animation: planktonFloat 14s linear infinite;
+  will-change: transform, opacity, filter;
+}
+
+/* variasi */
+.plankton:nth-child(2n) {
+  width: 4px;
+  height: 4px;
+  opacity: 0.5;
+}
+
+.plankton:nth-child(3n) {
+  width: 8px;
+  height: 8px;
+}
+
+.plankton:nth-child(5n) {
+  width: 3px;
+  height: 3px;
+  opacity: 0.35;
+}
+
+.plankton:nth-child(4n) {
+  filter: blur(1px);
+}
+
+.plankton:nth-child(6n) {
+  filter: blur(2px);
+  opacity: 0.28;
+}
+
+/* blur dinamis */
+.plankton-layer .plankton {
+  animation-name: planktonFloat, planktonBlurPulse;
+  animation-duration: 14s, 4.5s;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+@keyframes planktonFloat {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.6);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  30% {
+    transform: translateY(-25vh) translateX(12px) scale(1);
+  }
+  55% {
+    transform: translateY(-55vh) translateX(-14px) scale(0.95);
+  }
+  80% {
+    transform: translateY(-85vh) translateX(10px) scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(-8px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes planktonBlurPulse {
+  0%, 100% {
+    filter: blur(0.4px);
+  }
+  50% {
+    filter: blur(2.2px);
+  }
+}
+
+/* posisi */
+.p0  { left: 4%; }
+.p1  { left: 9%; }
+.p2  { left: 14%; }
+.p3  { left: 19%; }
+.p4  { left: 24%; }
+.p5  { left: 29%; }
+.p6  { left: 34%; }
+.p7  { left: 39%; }
+.p8  { left: 44%; }
+.p9  { left: 49%; }
+.p10 { left: 54%; }
+.p11 { left: 59%; }
+.p12 { left: 64%; }
+.p13 { left: 69%; }
+.p14 { left: 74%; }
+.p15 { left: 79%; }
+.p16 { left: 84%; }
+.p17 { left: 89%; }
+.p18 { left: 94%; }
+.p19 { left: 97%; }
+
+/* parallax tambahan untuk layer lain */
+.fish-layer {
+  transform: translate(
+    calc(var(--mouse-x) * 6px),
+    calc(var(--mouse-y) * 6px)
+  );
+  transition: transform 0.45s ease-out;
+}
+
+.light-rays {
+  transform: translate(
+    calc(var(--mouse-x) * 4px),
+    calc(var(--mouse-y) * 4px)
+  );
+}
+
+/* mobile: kecilkan efek biar ringan */
+@media (max-width: 768px) {
+  .plankton-layer {
+    transform: translate(
+      calc(var(--mouse-x) * 4px),
+      calc(var(--mouse-y) * 4px)
+    );
+  }
+
+  .current {
+    opacity: 0.1;
+    filter: blur(20px);
+  }
+}

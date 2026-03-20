@@ -37,7 +37,7 @@ function App() {
     document.head.appendChild(favicon)
   }, [])
 
-  // 🔥 ANIMASI SCROLL FIX DI SINI
+  // animasi scroll
   useEffect(() => {
     if (loading) return
 
@@ -58,6 +58,21 @@ function App() {
 
     return () => observer.disconnect()
   }, [loading])
+
+  // mouse parallax
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 2
+      const y = (e.clientY / window.innerHeight - 0.5) * 2
+
+      document.documentElement.style.setProperty('--mouse-x', x.toFixed(3))
+      document.documentElement.style.setProperty('--mouse-y', y.toFixed(3))
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   const content = useMemo(() => getPortfolioContent(lang), [lang])
 
@@ -88,18 +103,24 @@ function App() {
         <span className="bubble b8"></span>
       </div>
 
+      <div className="current-layer">
+        <div className="current current-1"></div>
+        <div className="current current-2"></div>
+        <div className="current current-3"></div>
+      </div>
+
       <div className="plankton-layer">
-  {Array.from({ length: 140 }).map((_, i) => (
-    <span
-      key={i}
-      className={`plankton p${i % 20}`}
-      style={{
-        animationDuration: `${10 + (i % 9)}s`,
-        animationDelay: `${(i % 12) * 0.8}s`,
-      }}
-    ></span>
-  ))}
-</div>
+        {Array.from({ length: 100 }).map((_, i) => (
+          <span
+            key={i}
+            className={`plankton p${i % 20}`}
+            style={{
+              animationDuration: `${10 + (i % 9)}s`,
+              animationDelay: `${(i % 12) * 0.8}s`,
+            }}
+          ></span>
+        ))}
+      </div>
 
       <div className="fish-layer">
         <img src={fish1} alt="fish" className="fish fish-a" />
