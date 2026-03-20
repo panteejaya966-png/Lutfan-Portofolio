@@ -10,7 +10,7 @@ button { font: inherit; }
   color: white;
   position: relative;
   overflow: hidden;
-  z-index: 1;
+  z-index: 2;
 }
 
 .top-glow {
@@ -1332,7 +1332,7 @@ body {
 .plankton-layer {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
   overflow: hidden;
 }
