@@ -51,7 +51,7 @@ skills: [
     contactDesc: 'Terbuka untuk kolaborasi, freelance, atau diskusi project website.',
     direct: 'Kontak Langsung',
     send: 'Kirim Email',
-    footer: 'Dibuat dengan React.js dan inspirasi dari samudra.',
+    footer: 'Dibuat dengan React.js.',
     },
     en: {
     home: 'Home',

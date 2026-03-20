@@ -1266,4 +1266,31 @@ body {
       margin-bottom: 8px;
     }
   }
+
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 14px 16px;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .translate-btn,
+    .lang-btn {
+      margin-left: 8px;
+      padding: 6px 12px;
+      white-space: nowrap;
+    }
+  }
 }
