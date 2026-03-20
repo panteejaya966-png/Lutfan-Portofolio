@@ -1337,19 +1337,32 @@ body {
   overflow: hidden;
 }
 
+.plankton-layer.back {
+  z-index: 0;
+  filter: blur(1.2px);
+  opacity: 0.6;
+}
+
+.plankton-layer.front {
+  z-index: 1;
+}
+
 .plankton {
   position: absolute;
-  bottom: -40px;
+  bottom: -50px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(125, 211, 252, 0.95);
+  background: radial-gradient(circle,
+  rgba(186, 230, 253, 1),
+  rgba(125, 211, 252, 0.7),
+  transparent 70%
+  ) ;
   box-shadow:
     0 0 8px rgba(125, 211, 252, 0.9),
     0 0 18px rgba(56, 189, 248, 0.7),
     0 0 34px rgba(14, 165, 233, 0.45);
   opacity: 0;
-  animation: planktonFloat 14s linear infinite;
 }
 
 .plankton:nth-child(2n) {
@@ -1369,27 +1382,6 @@ body {
   opacity: 0.45;
 }
 
-.plankton:nth-child(4n) {
-  background: rgba(186, 230, 253, 0.95);
-  box-shadow:
-    0 0 8px rgba(186, 230, 253, 0.95),
-    0 0 20px rgba(125, 211, 252, 0.75),
-    0 0 38px rgba(56, 189, 248, 0.45);
-}
-
-.plankton:nth-child(odd) {
-  filter: blur(0.5px);
-}
-
-.plankton:nth-child(6n) {
-  transform: scale(1.4);
-  opacity: 0.9;
-}
-
-.plankton:nth-child(7n) {
-  transform: scale(0.6);
-  opacity: 0.4;
-}
 
 /* posisi banyak biar rame */
 .p0  { left: 4%;  animation-duration: 12s; animation-delay: 0s; }
@@ -1473,29 +1465,50 @@ body {
 .p78 { left: 86%; animation-duration: 14s; animation-delay: 28s; }
 .p79 { left: 96%; animation-duration: 22s; animation-delay: 29s; }
 
-@keyframes planktonFloat {
+@keyframes planktonFront {
   0% {
     transform: translateY(0) translateX(0) scale(0.6);
     opacity: 0;
   }
-  10% {
-    opacity: 0.55;
-  }
+
+  10% { opacity: 0.7; }
+
   25% {
-    transform: translateY(-22vh) translateX(12px) scale(1);
+    transform: translateY(-25vh) translateX(20px);
   }
-  45% {
-    transform: translateY(-45vh) translateX(-10px) scale(0.95);
+
+  50% {
+    transform: translateY(-55vh) translateX(-25px);
   }
-  65% {
-    transform: translateY(-70vh) translateX(18px) scale(1.05);
+
+  75% {
+    transform: translateY(-85vh) translateX(15px);
   }
-  85% {
-    transform: translateY(-95vh) translateX(-14px) scale(0.9);
-    opacity: 0.5;
-  }
+
   100% {
-    transform: translateY(-120vh) translateX(8px) scale(1.08);
+    transform: translateY(-120vh) translateX(-10px);
+    opacity: 0;
+  }
+}
+
+@keyframes planktonBack {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.5);
+    opacity: 0;
+  }
+
+  20% { opacity: 0.5; }
+
+  40% {
+    transform: translateY(-30vh) translateX(-10px);
+  }
+
+  70% {
+    transform: translateY(-70vh) translateX(12px);
+  }
+
+  100% {
+    transform: translateY(-120vh) translateX(5px);
     opacity: 0;
   }
 }

@@ -88,8 +88,14 @@ function App() {
         <span className="bubble b8"></span>
       </div>
 
-      <div className="plankton-layer">
-  {Array.from({ length: 80 }).map((_, i) => (
+      <div className="plankton-layer back">
+  {Array.from({ length: 50 }).map((_, i) => (
+    <span key={i} className={`plankton p${i}`}></span>
+  ))}
+</div>
+
+<div className="plankton-layer front">
+  {Array.from({ length: 40 }).map((_, i) => (
     <span key={i} className={`plankton p${i}`}></span>
   ))}
 </div>
