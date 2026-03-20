@@ -48,7 +48,7 @@ skills: [
     projectTag: 'Proyek Pilihan',
     faqTitle: 'Pertanyaan Umum',
     contactTitle: 'Hubungi Saya',
-    contactDesc: 'Terbuka untuk kolaborasi, freelance, atau diskusi project website.',
+    contactDesc: 'Bagi yang mau bertanya tanya bisa hubungi dibawah ini.',
     direct: 'Kontak Langsung',
     send: 'Kirim Email',
     footer: 'Dibuat dengan React.js.',

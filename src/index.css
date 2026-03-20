@@ -156,6 +156,13 @@ button { font: inherit; }
   glowPulse 4s ease-in-out infinite;
 }
 
+.brand-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
 /* ===== ANIMASI ===== */
 @keyframes waveFloat {
   0%, 100% {
@@ -1644,4 +1651,22 @@ body {
     opacity: 0.1;
     filter: blur(20px);
   }
+}
+
+@media (max-width: 640px) {
+  .brand-name {
+    font-size: 0.9rem;
+  }
+
+  .brand-sub {
+    font-size: 0.7rem;
+  }
+}
+
+.brand {
+  gap: 10px;
+}
+
+.navbar {
+  padding: 12px 16px;
 }

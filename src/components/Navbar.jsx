@@ -7,7 +7,8 @@ return (
             <img src="/Waves.png" alt="wave" className="brand-logo" />
         </div>
         <div>
-            <h2 style={{ margin: 0 }}>{content.brandName}</h2>
+            <h2 
+            className="brand-name">{content.brandName}</h2>
             <p className="brand-sub">{content.brandSub}</p>
         </div>
         </div>
