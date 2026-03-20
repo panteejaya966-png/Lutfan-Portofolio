@@ -88,9 +88,16 @@ function App() {
         <span className="bubble b8"></span>
       </div>
 
-      <div className="plankton-layer back">
-  {Array.from({ length: 60 }).map((_, i) => (
-    <span key={i} className={`plankton p${i}`}></span>
+      <div className="plankton-layer">
+  {Array.from({ length: 140 }).map((_, i) => (
+    <span
+      key={i}
+      className={`plankton p${i % 20}`}
+      style={{
+        animationDuration: `${10 + (i % 9)}s`,
+        animationDelay: `${(i % 12) * 0.8}s`,
+      }}
+    ></span>
   ))}
 </div>
 
