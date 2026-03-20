@@ -121,7 +121,6 @@ function App() {
     cancelAnimationFrame(rafId)
   }
 }, [loading])
-
   const content = useMemo(() => getPortfolioContent(lang), [lang])
 
   if (loading) {
@@ -139,7 +138,8 @@ function App() {
       <div className="top-glow"></div>
       <div className="light-rays"></div>
       <div className="sea-dust"></div>
-      <div className="cursor-fish"></div>
+      <img src={fish1}
+      className="cursor-fish" />
       <div className="cursor-trail">
         <span className="trail-bubble tb1"></span>
         <span className="trail-bubble tb2"></span>
