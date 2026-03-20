@@ -1679,7 +1679,7 @@ body {
   left: 0;
   width: 20px;
   height: 20px;
-  background: red;
+  background: rgba(125, 211, 252, 0.95);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
