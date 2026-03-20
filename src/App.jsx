@@ -74,6 +74,43 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
+  useEffect(() => {
+  const dot = document.querySelector('.cursor-dot')
+  const ring = document.querySelector('.cursor-ring')
+
+  let mouseX = 0
+  let mouseY = 0
+  let ringX = 0
+  let ringY = 0
+
+  const moveCursor = (e) => {
+    mouseX = e.clientX
+    mouseY = e.clientY
+  }
+
+  const animate = () => {
+    ringX += (mouseX - ringX) * 0.1
+    ringY += (mouseY - ringY) * 0.1
+
+    if (dot && ring) {
+      dot.style.left = `${mouseX}px`
+      dot.style.top = `${mouseY}px`
+
+      ring.style.left = `${ringX}px`
+      ring.style.top = `${ringY}px`
+    }
+
+    requestAnimationFrame(animate)
+  }
+
+  window.addEventListener('mousemove', moveCursor)
+  animate()
+
+  return () => {
+    window.removeEventListener('mousemove', moveCursor)
+  }
+}, [])
+
   const content = useMemo(() => getPortfolioContent(lang), [lang])
 
   if (loading) {
@@ -91,6 +128,8 @@ function App() {
       <div className="top-glow"></div>
       <div className="light-rays"></div>
       <div className="sea-dust"></div>
+      <div className="cursor-dot"></div>
+      <div className="cursor-ring"></div>
 
       <div className="bubble-layer">
         <span className="bubble b1"></span>
