@@ -656,6 +656,7 @@ body {
 
   .hero {
     padding: 110px 20px 60px;
+    gap: 10px;
   }
 
   .section {
@@ -984,6 +985,7 @@ body {
     0 0 0 1px rgba(147,197,253,0.1),
     0 0 35px rgba(56,189,248,0.28),
     0 0 90px rgba(14,165,233,0.16);
+  margin-bottom: 10px;
 }
 
 /* RESPONSIVE */
