@@ -88,6 +88,12 @@ function App() {
         <span className="bubble b8"></span>
       </div>
 
+      <div className="plankton-layer">
+  {Array.from({ length: 20 }).map((_, i) => (
+    <span key={i} className={`plankton p${i}`}></span>
+  ))}
+</div>
+
       <div className="fish-layer">
         <img src={fish1} alt="fish" className="fish fish-a" />
         <img src={fish2} alt="fish" className="fish fish-b" />

@@ -1311,7 +1311,7 @@ body {
   }
 
   .hero-visual {
-    margin-bottom: -6px !important;
+    margin-bottom: -14px !important;
   }
 
   .avatar-shell {
@@ -1325,6 +1325,86 @@ body {
   .badge {
     margin-top: 0 !important;
     margin-bottom: 12px !important;
+  }
+}
+
+/* ===== PLANKTON ===== */
+.plankton-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.plankton {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(125, 211, 252, 0.9);
+  box-shadow: 0 0 8px rgba(125, 211, 252, 0.8),
+              0 0 16px rgba(56, 189, 248, 0.4);
+  opacity: 0.6;
+  animation: planktonFloat linear infinite;
+}
+
+.plankton:nth-child(3n) {
+  width: 6px;
+  height: 6px;
+}
+.plankton:nth-child(4n) {
+  width: 2px;
+  height: 2px;
+  opacity: 0.4;
+}
+
+/* RANDOM POSISI + SPEED */
+.p0 { left: 5%; animation-duration: 12s; animation-delay: 0s; }
+.p1 { left: 12%; animation-duration: 18s; animation-delay: 2s; }
+.p2 { left: 20%; animation-duration: 14s; animation-delay: 4s; }
+.p3 { left: 30%; animation-duration: 20s; animation-delay: 1s; }
+.p4 { left: 40%; animation-duration: 16s; animation-delay: 3s; }
+.p5 { left: 50%; animation-duration: 22s; animation-delay: 5s; }
+.p6 { left: 60%; animation-duration: 15s; animation-delay: 2s; }
+.p7 { left: 70%; animation-duration: 19s; animation-delay: 6s; }
+.p8 { left: 80%; animation-duration: 17s; animation-delay: 1s; }
+.p9 { left: 90%; animation-duration: 21s; animation-delay: 4s; }
+
+/* sisanya biar random */
+.p10 { left: 15%; animation-duration: 13s; }
+.p11 { left: 25%; animation-duration: 18s; }
+.p12 { left: 35%; animation-duration: 16s; }
+.p13 { left: 45%; animation-duration: 20s; }
+.p14 { left: 55%; animation-duration: 14s; }
+.p15 { left: 65%; animation-duration: 19s; }
+.p16 { left: 75%; animation-duration: 17s; }
+.p17 { left: 85%; animation-duration: 22s; }
+.p18 { left: 95%; animation-duration: 15s; }
+.p19 { left: 10%; animation-duration: 21s; }
+
+/* GERAK NGAMBANG */
+@keyframes planktonFloat {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0.6);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(50vh) translateX(20px) scale(1);
+  }
+
+  75% {
+    transform: translateY(20vh) translateX(-15px);
+  }
+
+  100% {
+    transform: translateY(-20vh) translateX(10px) scale(1.1);
+    opacity: 0;
   }
 }
 }
