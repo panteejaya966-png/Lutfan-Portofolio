@@ -1297,4 +1297,34 @@ body {
       white-space: nowrap;
     }
   }
+
+  @media (max-width: 640px) {
+  .hero {
+    padding: 40px 20px 40px !important;
+    gap: 0 !important;
+  }
+
+  .hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .hero-visual {
+    margin-bottom: -6px !important;
+  }
+
+  .avatar-shell {
+    margin-bottom: 0 !important;
+  }
+
+  .hero-copy {
+    margin-top: 0 !important;
+  }
+
+  .badge {
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+  }
+}
 }
