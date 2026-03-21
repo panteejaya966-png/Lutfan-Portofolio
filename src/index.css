@@ -1685,7 +1685,7 @@ body {
   width: 42px;
   height: 42px;
   pointer-events: none;
-  z-index: 99999;
+  z-index: 99998;
   transform: translate(-50%, -50%);
   filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.7));
 }
@@ -1694,10 +1694,10 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  width: 40px;
-  height: 18px;
+  width: 60px;
+  height: 24px;
   pointer-events: none;
-  z-index: 99998;
+  z-index: 99999;
   transform: translate(-50%, -50%);
 }
 
@@ -1714,24 +1714,24 @@ body {
 .tb1 {
   width: 7px;
   height: 7px;
-  left: 2px;
-  top: 5px;
+  left: 8px;
+  top: 8px;
   animation-delay: 0s;
 }
 
 .tb2 {
   width: 5px;
   height: 5px;
-  left: 12px;
-  top: 10px;
+  left: 22px;
+  top: 3px;
   animation-delay: 0.2s;
 }
 
 .tb3 {
   width: 4px;
   height: 4px;
-  left: 20px;
-  top: 3px;
+  left: 36px;
+  top: 12px;
   animation-delay: 0.4s;
 }
 

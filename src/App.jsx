@@ -96,20 +96,21 @@ function App() {
   const dx = mouseX - fishX
   const dy = mouseY - fishY
 
-  const tilt = Math.max(-18, Math.min(18, dy * 0.15))
+  const tilt = Math.max(-25, Math.min(25, dy * 0.25))
 
   fish.style.left = `${fishX}px`
   fish.style.top = `${fishY}px`
 
   if (dx >= 0) {
     fish.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
-    trail.style.left = `${fishX - 18}px`
+    trail.style.left = `${fishX + 24}px`
+    trail.style.top = `${fishY - 2}px`
   } else {
     fish.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
-    trail.style.left = `${fishX + 18}px`
+    trail.style.left = `${fishX - 24}px`
+    trail.style.top = `${fishY - 2}px`
   }
 
-  trail.style.top = `${fishY + 4}px`
   trail.style.transform = `translate(-50%, -50%)`
 
   rafId = requestAnimationFrame(animate)
