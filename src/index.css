@@ -1675,7 +1675,7 @@ body {
 }
 
 body {
-  cursor: none;
+  cursor: none !important;
 }
 
 .cursor-fish-wrap {
@@ -1807,5 +1807,40 @@ body {
   .cursor-trail,
   .cursor-ripple {
     display: none;
+  }
+}
+
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+.fish-bite .cursor-fish {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 14px rgba(125, 211, 252, 0.95));
+}
+
+.fish-bite::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  top: 16px;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.95);
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  animation: biteMouth 0.16s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes biteMouth {
+  from {
+    transform: scaleX(0.7);
+    opacity: 0.8;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
   }
 }

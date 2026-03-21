@@ -74,10 +74,11 @@ function App() {
   if (loading) return
 
   const fishWrap = document.querySelector('.cursor-fish-wrap')
+  const fish = document.querySelector('.cursor-fish')
   const fish2 = document.querySelector('.fish-2')
   const trail = document.querySelector('.cursor-trail')
 
-  if (!fishWrap || !fish2 || !trail) return
+  if (!fishWrap || !fish || !fish2 || !trail) return
 
   let mouseX = window.innerWidth / 2
   let mouseY = window.innerHeight / 2
@@ -85,10 +86,28 @@ function App() {
   let fishX = mouseX
   let fishY = mouseY
 
-  let fish2X = mouseX - 40
-  let fish2Y = mouseY + 24
+  let fish2X = mouseX - 36
+  let fish2Y = mouseY + 18
 
+  let isHoveringTarget = false
   let rafId
+
+  const hoverTargets = document.querySelectorAll('a, button, .skill-card, .about-card, .project-mini, .faq-button')
+
+  const onEnter = () => {
+    isHoveringTarget = true
+    fishWrap.classList.add('fish-bite')
+  }
+
+  const onLeave = () => {
+    isHoveringTarget = false
+    fishWrap.classList.remove('fish-bite')
+  }
+
+  hoverTargets.forEach((el) => {
+    el.addEventListener('mouseenter', onEnter)
+    el.addEventListener('mouseleave', onLeave)
+  })
 
   const moveCursor = (e) => {
     mouseX = e.clientX
@@ -96,36 +115,45 @@ function App() {
   }
 
   const animate = () => {
-    fishX += (mouseX - fishX) * 0.08
-    fishY += (mouseY - fishY) * 0.08
+    const followSpeed = isHoveringTarget ? 0.11 : 0.08
 
-    fish2X += (fishX - fish2X) * 0.06
-    fish2Y += (fishY - fish2Y) * 0.06
+    fishX += (mouseX - fishX) * followSpeed
+    fishY += (mouseY - fishY) * followSpeed
 
     const dx = mouseX - fishX
-    const dy = mouseY - fishY
-    const tilt = Math.max(-18, Math.min(18, dy * 0.18))
+const dy = mouseY - fishY
+const tilt = Math.max(-18, Math.min(18, dy * 0.18))
 
-    fishWrap.style.left = `${fishX}px`
-    fishWrap.style.top = `${fishY}px`
+const fish2BehindX = dx >= 0 ? fishX - 34 : fishX + 34
+const fish2BehindY = fishY + 14
 
-    fish2.style.left = `${fish2X}px`
-    fish2.style.top = `${fish2Y}px`
+fish2X += (fish2BehindX - fish2X) * 0.06
+fish2Y += (fish2BehindY - fish2Y) * 0.06
 
-    if (dx >= 0) {
-      fishWrap.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
-      fish2.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
-      trail.style.left = `${fishX + 28}px`
-    } else {
-      fishWrap.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
-      fish2.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
-      trail.style.left = `${fishX - 28}px`
-    }
+fishWrap.style.left = `${fishX}px`
+fishWrap.style.top = `${fishY}px`
 
-    trail.style.top = `${fishY - 2}px`
-    trail.style.transform = `translate(-50%, -50%)`
+if (dx >= 0) {
+  fishWrap.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
+  trail.style.left = `${fishX + 28}px`
+} else {
+  fishWrap.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
+  trail.style.left = `${fishX - 28}px`
+}
 
-    rafId = requestAnimationFrame(animate)
+trail.style.top = `${fishY - 2}px`
+trail.style.transform = `translate(-50%, -50%)`
+
+fish2.style.left = `${fish2X}px`
+fish2.style.top = `${fish2Y}px`
+
+if (dx >= 0) {
+  fish2.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
+} else {
+  fish2.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
+}
+
+rafId = requestAnimationFrame(animate)
   }
 
   window.addEventListener('mousemove', moveCursor)
@@ -134,6 +162,11 @@ function App() {
   return () => {
     window.removeEventListener('mousemove', moveCursor)
     cancelAnimationFrame(rafId)
+
+    hoverTargets.forEach((el) => {
+      el.removeEventListener('mouseenter', onEnter)
+      el.removeEventListener('mouseleave', onLeave)
+    })
   }
 }, [loading])
 
