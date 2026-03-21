@@ -82,7 +82,6 @@ function App() {
   let mouseY = window.innerHeight / 2
   let fishX = mouseX
   let fishY = mouseY
-  let lastAngle = 0
   let rafId
 
   const moveCursor = (e) => {
@@ -91,27 +90,30 @@ function App() {
   }
 
   const animate = () => {
-    fishX += (mouseX - fishX) * 0.08
-    fishY += (mouseY - fishY) * 0.08
+  fishX += (mouseX - fishX) * 0.08
+  fishY += (mouseY - fishY) * 0.08
 
-    const dx = mouseX - fishX
-    const dy = mouseY - fishY
-    const angle = Math.atan2(dy, dx) * 180 / Math.PI
+  const dx = mouseX - fishX
+  const dy = mouseY - fishY
 
-    if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
-      lastAngle = angle
-    }
+  const tilt = Math.max(-18, Math.min(18, dy * 0.15))
 
-    fish.style.left = `${fishX}px`
-    fish.style.top = `${fishY}px`
-    fish.style.transform = `translate(-50%, -50%) rotate(${lastAngle}deg)`
+  fish.style.left = `${fishX}px`
+  fish.style.top = `${fishY}px`
 
+  if (dx >= 0) {
+    fish.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
     trail.style.left = `${fishX - 18}px`
-    trail.style.top = `${fishY + 4}px`
-    trail.style.transform = `translate(-50%, -50%) rotate(${lastAngle}deg)`
-
-    rafId = requestAnimationFrame(animate)
+  } else {
+    fish.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
+    trail.style.left = `${fishX + 18}px`
   }
+
+  trail.style.top = `${fishY + 4}px`
+  trail.style.transform = `translate(-50%, -50%)`
+
+  rafId = requestAnimationFrame(animate)
+}
 
   window.addEventListener('mousemove', moveCursor)
   animate()

@@ -1756,3 +1756,16 @@ body {
     display: none;
   }
 }
+
+.cursor-fish {
+  animation: fishWiggle 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes fishWiggle {
+  from {
+    margin-top: -1px;
+  }
+  to {
+    margin-top: 1px;
+  }
+}
