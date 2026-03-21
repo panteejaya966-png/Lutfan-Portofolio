@@ -157,17 +157,19 @@ function App() {
     }
 
     if (fish2) {
-      fish2.style.left = `${fish2X - 20}px`
-      fish2.style.top = `${fish2Y + swimBob + 10}px`
+  fish2.style.left = `${fish2X - 20}px`
+  fish2.style.top = `${fish2Y + swimBob + 10}px`
 
-      if (dx >= 0) {
-        fish2.style.transform =
-          `translate(-50%, -50%) scaleX(1) rotate(${verticalTilt}deg)`
-      } else {
-        fish2.style.transform =
-          `translate(-50%, -50%) scaleX(-1) rotate(${-verticalTilt}deg)`
-      }
-    }
+  const fish2Tilt = Math.max(-18, Math.min(18, dy * 0.18))
+
+  if (dx >= 0) {
+    fish2.style.transform =
+      `translate(-50%, -50%) scaleX(1) rotate(${fish2Tilt}deg)`
+  } else {
+    fish2.style.transform =
+      `translate(-50%, -50%) scaleX(-1) rotate(${-fish2Tilt}deg)`
+  }
+}
 
     const runAway = 12 + speed * 0.5
     if (dx >= 0) {
