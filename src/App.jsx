@@ -215,7 +215,7 @@ function App() {
         <img src={fish1} alt="cursor fish" className="cursor-fish" />
         <span className="fish-mouth"></span>
       </div>
-      <img src={fish2} alt="cursor fish 2" className="cursor-fish fish-2" />
+      <img src={fish1} alt="cursor fish 2" className="cursor-fish fish-2" />
       <div className="cursor-trail">
         <span className="trail-bubble tb1"></span>
         <span className="trail-bubble tb2"></span>
