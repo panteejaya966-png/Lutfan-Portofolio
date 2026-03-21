@@ -73,11 +73,13 @@ function App() {
   useEffect(() => {
   if (loading) return
 
+  const fishWrap = document.querySelector('.cursor-fish-wrap')
   const fish = document.querySelector('.cursor-fish')
-  const trail = document.querySelector('.cursor-trail')
   const fish2 = document.querySelector('.fish-2')
+  const trail = document.querySelector('.cursor-trail')
+  const ripple = document.querySelector('.cursor-ripple')
 
-  if (!fish || !trail) return
+  if (!fishWrap || !fish || !trail || !ripple) return
 
   let mouseX = window.innerWidth / 2
   let mouseY = window.innerHeight / 2
@@ -91,7 +93,16 @@ function App() {
   let fish2Y = mouseY + 20
 
   let speed = 0
+  let idleTimer = null
   let rafId
+
+  const triggerRipple = () => {
+    ripple.style.left = `${mouseX}px`
+    ripple.style.top = `${mouseY}px`
+    ripple.classList.remove('show-ripple')
+    void ripple.offsetWidth
+    ripple.classList.add('show-ripple')
+  }
 
   const moveCursor = (e) => {
     prevMouseX = mouseX
@@ -102,6 +113,11 @@ function App() {
     const vx = mouseX - prevMouseX
     const vy = mouseY - prevMouseY
     speed = Math.min(40, Math.sqrt(vx * vx + vy * vy))
+
+    if (idleTimer) clearTimeout(idleTimer)
+    idleTimer = setTimeout(() => {
+      triggerRipple()
+    }, 180)
   }
 
   const animate = () => {
@@ -114,30 +130,30 @@ function App() {
     const dx = mouseX - fishX
     const dy = mouseY - fishY
 
-    const verticalTilt = Math.max(-28, Math.min(28, dy * 0.25))
+    const verticalTilt = Math.max(-22, Math.min(22, dy * 0.22))
     const swimBob = Math.sin(Date.now() * 0.014) * 2
     const chaseOffset = 26 + speed * 0.35
     const fishScale = 1 + speed * 0.003
 
-    fish.style.left = `${fishX}px`
-    fish.style.top = `${fishY + swimBob}px`
+    fishWrap.style.left = `${fishX}px`
+    fishWrap.style.top = `${fishY + swimBob}px`
 
     if (dx >= 0) {
-      fish.style.transform =
+      fishWrap.style.transform =
         `translate(-50%, -50%) scaleX(1) scale(${fishScale}) rotate(${verticalTilt}deg)`
 
       trail.style.left = `${fishX + chaseOffset}px`
       trail.style.top = `${fishY - 4 + swimBob}px`
       trail.style.transform =
-        `translate(-50%, -50%) rotate(${verticalTilt * 0.4}deg)`
+        `translate(-50%, -50%) rotate(${verticalTilt * 0.35}deg)`
     } else {
-      fish.style.transform =
+      fishWrap.style.transform =
         `translate(-50%, -50%) scaleX(-1) scale(${fishScale}) rotate(${-verticalTilt}deg)`
 
       trail.style.left = `${fishX - chaseOffset}px`
       trail.style.top = `${fishY - 4 + swimBob}px`
       trail.style.transform =
-        `translate(-50%, -50%) rotate(${-verticalTilt * 0.4}deg)`
+        `translate(-50%, -50%) rotate(${-verticalTilt * 0.35}deg)`
     }
 
     if (fish2) {
@@ -153,7 +169,14 @@ function App() {
       }
     }
 
-    trail.style.opacity = `${0.7 + Math.min(0.3, speed * 0.02)}`
+    const runAway = 12 + speed * 0.5
+    if (dx >= 0) {
+      trail.style.left = `${fishX + chaseOffset + runAway}px`
+    } else {
+      trail.style.left = `${fishX - chaseOffset - runAway}px`
+    }
+
+    trail.style.opacity = `${0.72 + Math.min(0.28, speed * 0.02)}`
 
     speed *= 0.92
     rafId = requestAnimationFrame(animate)
@@ -165,6 +188,7 @@ function App() {
   return () => {
     window.removeEventListener('mousemove', moveCursor)
     cancelAnimationFrame(rafId)
+    if (idleTimer) clearTimeout(idleTimer)
   }
 }, [loading])
 
@@ -180,14 +204,16 @@ function App() {
   }
 
   return (
-    <>
+    <div>
       <div className="animated-bg"></div>
       <div className="top-glow"></div>
       <div className="light-rays"></div>
       <div className="sea-dust"></div>
-      <img src={fish1}
-      className="cursor-fish" />
-      <img src={fish2} className="cursor-fish fish-2" />
+      <div className="cursor-fish-wrap">
+        <img src={fish1} alt="cursor fish" className="cursor-fish" />
+        <span className="fish-mouth"></span>
+      </div>
+      <img src={fish2} alt="cursor fish 2" className="cursor-fish fish-2" />
       <div className="cursor-trail">
         <span className="trail-bubble tb1"></span>
         <span className="trail-bubble tb2"></span>
@@ -195,6 +221,7 @@ function App() {
         <span className="trail-bubble tb4"></span>
         <span className="trail-bubble tb5"></span>
       </div>
+      <div className="cursor-ripple"></div>
 
       <div className="bubble-layer">
         <span className="bubble b1"></span>
@@ -255,7 +282,7 @@ function App() {
         <Contact content={content} />
         <Footer content={content} />
       </div>
-    </>
+    </div>
   )
 }
 
