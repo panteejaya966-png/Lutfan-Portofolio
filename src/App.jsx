@@ -80,44 +80,61 @@ function App() {
 
   let mouseX = window.innerWidth / 2
   let mouseY = window.innerHeight / 2
+  let prevMouseX = mouseX
+  let prevMouseY = mouseY
+
   let fishX = mouseX
   let fishY = mouseY
+  let speed = 0
   let rafId
 
   const moveCursor = (e) => {
+    prevMouseX = mouseX
+    prevMouseY = mouseY
     mouseX = e.clientX
     mouseY = e.clientY
+
+    const vx = mouseX - prevMouseX
+    const vy = mouseY - prevMouseY
+    speed = Math.min(40, Math.sqrt(vx * vx + vy * vy))
   }
 
   const animate = () => {
-    fishX += (mouseX - fishX) * 0.075
-    fishY += (mouseY - fishY) * 0.075
+    fishX += (mouseX - fishX) * (0.06 + speed * 0.002)
+    fishY += (mouseY - fishY) * (0.06 + speed * 0.002)
 
     const dx = mouseX - fishX
     const dy = mouseY - fishY
 
-    const verticalTilt = Math.max(-22, Math.min(22, dy * 0.22))
-    const swimBob = Math.sin(Date.now() * 0.012) * 2.5
+    const verticalTilt = Math.max(-28, Math.min(28, dy * 0.25))
+    const swimBob = Math.sin(Date.now() * 0.014) * 2
+    const chaseOffset = 26 + speed * 0.35
+    const fishScale = 1 + speed * 0.003
 
     fish.style.left = `${fishX}px`
     fish.style.top = `${fishY + swimBob}px`
 
     if (dx >= 0) {
       fish.style.transform =
-        `translate(-50%, -50%) scaleX(1) rotate(${verticalTilt}deg)`
-      trail.style.left = `${fishX + 26}px`
-      trail.style.top = `${fishY - 3 + swimBob}px`
+        `translate(-50%, -50%) scaleX(1) scale(${fishScale}) rotate(${verticalTilt}deg)`
+
+      trail.style.left = `${fishX + chaseOffset}px`
+      trail.style.top = `${fishY - 4 + swimBob}px`
       trail.style.transform =
-        `translate(-50%, -50%) rotate(${verticalTilt * 0.35}deg)`
+        `translate(-50%, -50%) rotate(${verticalTilt * 0.4}deg)`
     } else {
       fish.style.transform =
-        `translate(-50%, -50%) scaleX(-1) rotate(${-verticalTilt}deg)`
-      trail.style.left = `${fishX - 26}px`
-      trail.style.top = `${fishY - 3 + swimBob}px`
+        `translate(-50%, -50%) scaleX(-1) scale(${fishScale}) rotate(${-verticalTilt}deg)`
+
+      trail.style.left = `${fishX - chaseOffset}px`
+      trail.style.top = `${fishY - 4 + swimBob}px`
       trail.style.transform =
-        `translate(-50%, -50%) rotate(${-verticalTilt * 0.35}deg)`
+        `translate(-50%, -50%) rotate(${-verticalTilt * 0.4}deg)`
     }
 
+    trail.style.opacity = `${0.7 + Math.min(0.3, speed * 0.02)}`
+
+    speed *= 0.92
     rafId = requestAnimationFrame(animate)
   }
 
@@ -153,6 +170,8 @@ function App() {
         <span className="trail-bubble tb1"></span>
         <span className="trail-bubble tb2"></span>
         <span className="trail-bubble tb3"></span>
+        <span className="trail-bubble tb4"></span>
+        <span className="trail-bubble tb5"></span>
       </div>
 
       <div className="bubble-layer">
