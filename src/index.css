@@ -1688,60 +1688,62 @@ body {
   z-index: 99998;
   transform: translate(-50%, -50%);
   filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.7));
+  will-change: transform, left, top;
 }
 
 .cursor-trail {
   position: fixed;
   left: 0;
   top: 0;
-  width: 60px;
-  height: 24px;
+  width: 64px;
+  height: 26px;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
+  will-change: transform, left, top;
 }
 
 .trail-bubble {
   position: absolute;
   border-radius: 50%;
-  background: rgba(186, 230, 253, 0.9);
+  background: rgba(186, 230, 253, 0.95);
   box-shadow:
     0 0 8px rgba(125, 211, 252, 0.8),
     0 0 16px rgba(56, 189, 248, 0.35);
-  animation: bubbleTrail 1.1s infinite ease-out;
+  animation: bubbleTrail 1s infinite ease-out;
 }
 
 .tb1 {
-  width: 7px;
-  height: 7px;
-  left: 8px;
+  width: 8px;
+  height: 8px;
+  left: 10px;
   top: 8px;
   animation-delay: 0s;
 }
 
 .tb2 {
-  width: 5px;
-  height: 5px;
-  left: 22px;
+  width: 6px;
+  height: 6px;
+  left: 26px;
   top: 3px;
-  animation-delay: 0.2s;
+  animation-delay: 0.18s;
 }
 
 .tb3 {
-  width: 4px;
-  height: 4px;
-  left: 36px;
-  top: 12px;
-  animation-delay: 0.4s;
+  width: 5px;
+  height: 5px;
+  left: 42px;
+  top: 14px;
+  animation-delay: 0.32s;
 }
 
 @keyframes bubbleTrail {
   0% {
-    transform: scale(0.7) translateX(0);
-    opacity: 0.8;
+    transform: scale(0.75) translateX(0) translateY(0);
+    opacity: 0.95;
   }
   100% {
-    transform: scale(1.4) translateX(-10px) translateY(-6px);
+    transform: scale(1.45) translateX(8px) translateY(-8px);
     opacity: 0;
   }
 }
@@ -1769,3 +1771,4 @@ body {
     margin-top: 1px;
   }
 }
+

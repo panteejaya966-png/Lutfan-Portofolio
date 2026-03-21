@@ -90,31 +90,36 @@ function App() {
   }
 
   const animate = () => {
-  fishX += (mouseX - fishX) * 0.08
-  fishY += (mouseY - fishY) * 0.08
+    fishX += (mouseX - fishX) * 0.075
+    fishY += (mouseY - fishY) * 0.075
 
-  const dx = mouseX - fishX
-  const dy = mouseY - fishY
+    const dx = mouseX - fishX
+    const dy = mouseY - fishY
 
-  const tilt = Math.max(-25, Math.min(25, dy * 0.25))
+    const verticalTilt = Math.max(-22, Math.min(22, dy * 0.22))
+    const swimBob = Math.sin(Date.now() * 0.012) * 2.5
 
-  fish.style.left = `${fishX}px`
-  fish.style.top = `${fishY}px`
+    fish.style.left = `${fishX}px`
+    fish.style.top = `${fishY + swimBob}px`
 
-  if (dx >= 0) {
-    fish.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
-    trail.style.left = `${fishX + 24}px`
-    trail.style.top = `${fishY - 2}px`
-  } else {
-    fish.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
-    trail.style.left = `${fishX - 24}px`
-    trail.style.top = `${fishY - 2}px`
+    if (dx >= 0) {
+      fish.style.transform =
+        `translate(-50%, -50%) scaleX(1) rotate(${verticalTilt}deg)`
+      trail.style.left = `${fishX + 26}px`
+      trail.style.top = `${fishY - 3 + swimBob}px`
+      trail.style.transform =
+        `translate(-50%, -50%) rotate(${verticalTilt * 0.35}deg)`
+    } else {
+      fish.style.transform =
+        `translate(-50%, -50%) scaleX(-1) rotate(${-verticalTilt}deg)`
+      trail.style.left = `${fishX - 26}px`
+      trail.style.top = `${fishY - 3 + swimBob}px`
+      trail.style.transform =
+        `translate(-50%, -50%) rotate(${-verticalTilt * 0.35}deg)`
+    }
+
+    rafId = requestAnimationFrame(animate)
   }
-
-  trail.style.transform = `translate(-50%, -50%)`
-
-  rafId = requestAnimationFrame(animate)
-}
 
   window.addEventListener('mousemove', moveCursor)
   animate()
@@ -124,6 +129,7 @@ function App() {
     cancelAnimationFrame(rafId)
   }
 }, [loading])
+
   const content = useMemo(() => getPortfolioContent(lang), [lang])
 
   if (loading) {
