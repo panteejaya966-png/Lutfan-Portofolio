@@ -163,12 +163,12 @@ function App() {
   const fish2Tilt = Math.max(-18, Math.min(18, dy * 0.18))
 
   if (dx >= 0) {
-    fish2.style.transform =
-      `translate(-50%, -50%) scaleX(1) rotate(${fish2Tilt}deg)`
-  } else {
-    fish2.style.transform =
-      `translate(-50%, -50%) scaleX(-1) rotate(${-fish2Tilt}deg)`
-  }
+  fish2.style.transform =
+    `translate(-50%, -50%) scaleX(-1) rotate(${fish2Tilt}deg)`
+} else {
+  fish2.style.transform =
+    `translate(-50%, -50%) scaleX(1) rotate(${-fish2Tilt}deg)`
+}
 }
 
     const runAway = 12 + speed * 0.5
