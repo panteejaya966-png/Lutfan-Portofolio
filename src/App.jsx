@@ -75,6 +75,7 @@ function App() {
 
   const fish = document.querySelector('.cursor-fish')
   const trail = document.querySelector('.cursor-trail')
+  const fish2 = document.querySelector('.fish-2')
 
   if (!fish || !trail) return
 
@@ -85,6 +86,10 @@ function App() {
 
   let fishX = mouseX
   let fishY = mouseY
+
+  let fish2X = mouseX - 30
+  let fish2Y = mouseY + 20
+
   let speed = 0
   let rafId
 
@@ -102,6 +107,9 @@ function App() {
   const animate = () => {
     fishX += (mouseX - fishX) * (0.06 + speed * 0.002)
     fishY += (mouseY - fishY) * (0.06 + speed * 0.002)
+
+    fish2X += (fishX - fish2X) * 0.05
+    fish2Y += (fishY - fish2Y) * 0.05
 
     const dx = mouseX - fishX
     const dy = mouseY - fishY
@@ -130,6 +138,19 @@ function App() {
       trail.style.top = `${fishY - 4 + swimBob}px`
       trail.style.transform =
         `translate(-50%, -50%) rotate(${-verticalTilt * 0.4}deg)`
+    }
+
+    if (fish2) {
+      fish2.style.left = `${fish2X - 20}px`
+      fish2.style.top = `${fish2Y + swimBob + 10}px`
+
+      if (dx >= 0) {
+        fish2.style.transform =
+          `translate(-50%, -50%) scaleX(1) rotate(${verticalTilt}deg)`
+      } else {
+        fish2.style.transform =
+          `translate(-50%, -50%) scaleX(-1) rotate(${-verticalTilt}deg)`
+      }
     }
 
     trail.style.opacity = `${0.7 + Math.min(0.3, speed * 0.02)}`
@@ -166,6 +187,7 @@ function App() {
       <div className="sea-dust"></div>
       <img src={fish1}
       className="cursor-fish" />
+      <img src={fish2} className="cursor-fish fish-2" />
       <div className="cursor-trail">
         <span className="trail-bubble tb1"></span>
         <span className="trail-bubble tb2"></span>
