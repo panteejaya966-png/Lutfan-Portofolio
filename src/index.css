@@ -1678,143 +1678,6 @@ body {
   cursor: none;
 }
 
-.cursor-fish {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 42px;
-  height: 42px;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.7));
-  will-change: transform, left, top;
-}
-
-.cursor-trail {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 72px;
-  height: 30px;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  will-change: transform, left, top;
-}
-
-.trail-bubble {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(186, 230, 253, 0.95);
-  box-shadow:
-    0 0 8px rgba(125, 211, 252, 0.8),
-    0 0 16px rgba(56, 189, 248, 0.35);
-  animation: bubbleTrail 0.9s infinite ease-out;
-}
-
-.tb1 {
-  width: 8px;
-  height: 8px;
-  left: 10px;
-  top: 8px;
-  animation-delay: 0s;
-}
-
-.tb2 {
-  width: 6px;
-  height: 6px;
-  left: 28px;
-  top: 4px;
-  animation-delay: 0.15s;
-}
-
-.tb3 {
-  width: 5px;
-  height: 5px;
-  left: 45px;
-  top: 16px;
-  animation-delay: 0.28s;
-}
-
-.tb4 {
-  width: 4px;
-  height: 4px;
-  left: 56px;
-  top: 8px;
-  animation-delay: 0.4s;
-}
-
-.tb5 {
-  width: 3px;
-  height: 3px;
-  left: 64px;
-  top: 18px;
-  animation-delay: 0.52s;
-}
-
-@keyframes bubbleTrail {
-  0% {
-    transform: scale(0.75) translateX(0) translateY(0);
-    opacity: 0.95;
-  }
-  100% {
-    transform: scale(1.45) translateX(8px) translateY(-8px);
-    opacity: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    cursor: auto;
-  }
-
-  .cursor-fish,
-  .cursor-trail {
-    display: none;
-  }
-}
-
-.cursor-fish {
-  animation: fishWiggle 0.7s ease-in-out infinite alternate;
-}
-
-@keyframes fishWiggle {
-  from {
-    margin-top: -1px;
-  }
-  to {
-    margin-top: 1px;
-  }
-}
-
-.cursor-fish {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 42px;
-  height: 42px;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.7));
-  will-change: transform, left, top;
-  animation: fishTail 0.4s infinite ease-in-out;
-}
-
-@keyframes fishTail {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  50% { transform: translate(-50%, -50%) rotate(2deg); }
-  100% { transform: translate(-50%, -50%) rotate(0deg); }
-}
-
-.fish-2 {
-  width: 32px;
-  height: 32px;
-  opacity: 0.7;
-  z-index: 99997;
-}
-
 .cursor-fish-wrap {
   position: fixed;
   left: 0;
@@ -1832,20 +1695,6 @@ body {
   height: 42px;
   display: block;
   filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.7));
-  animation: fishTail 0.45s infinite ease-in-out;
-}
-
-.fish-mouth {
-  position: absolute;
-  right: 4px;
-  top: 18px;
-  width: 6px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.9);
-  clip-path: polygon(0 50%, 100% 0, 100% 100%);
-  transform-origin: left center;
-  animation: fishMouth 0.35s infinite ease-in-out;
-  filter: drop-shadow(0 0 3px rgba(255,255,255,0.6));
 }
 
 .fish-2 {
@@ -1857,17 +1706,17 @@ body {
   pointer-events: none;
   z-index: 99997;
   opacity: 0.72;
-  filter: drop-shadow(0 0 8px rgba(125, 211, 252, 0.45));
+  transform: translate(-50%, -50%);
   will-change: transform, left, top;
-  transform: translate(-50%, -50%) scaleX(-1);
+  filter: drop-shadow(0 0 8px rgba(125, 211, 252, 0.45));
 }
 
 .cursor-trail {
   position: fixed;
   left: 0;
   top: 0;
-  width: 78px;
-  height: 30px;
+  width: 52px;
+  height: 18px;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
@@ -1884,11 +1733,29 @@ body {
   animation: bubbleTrail 0.9s infinite ease-out;
 }
 
-.tb1 { width: 8px; height: 8px; left: 10px; top: 10px; animation-delay: 0s; }
-.tb2 { width: 6px; height: 6px; left: 26px; top: 4px; animation-delay: 0.15s; }
-.tb3 { width: 5px; height: 5px; left: 42px; top: 15px; animation-delay: 0.28s; }
-.tb4 { width: 4px; height: 4px; left: 56px; top: 7px; animation-delay: 0.4s; }
-.tb5 { width: 3px; height: 3px; left: 68px; top: 18px; animation-delay: 0.52s; }
+.tb1 {
+  width: 8px;
+  height: 8px;
+  left: 8px;
+  top: 5px;
+  animation-delay: 0s;
+}
+
+.tb2 {
+  width: 6px;
+  height: 6px;
+  left: 22px;
+  top: 1px;
+  animation-delay: 0.15s;
+}
+
+.tb3 {
+  width: 5px;
+  height: 5px;
+  left: 34px;
+  top: 9px;
+  animation-delay: 0.3s;
+}
 
 .cursor-ripple {
   position: fixed;
@@ -1908,25 +1775,13 @@ body {
   animation: rippleWave 0.9s ease-out forwards;
 }
 
-@keyframes fishTail {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(3deg); }
-  100% { transform: rotate(0deg); }
-}
-
-@keyframes fishMouth {
-  0% { transform: scaleX(0.55); opacity: 0.8; }
-  50% { transform: scaleX(1); opacity: 1; }
-  100% { transform: scaleX(0.55); opacity: 0.8; }
-}
-
 @keyframes bubbleTrail {
   0% {
     transform: scale(0.7) translateX(0) translateY(0);
     opacity: 0.95;
   }
   100% {
-    transform: scale(1.5) translateX(12px) translateY(-10px);
+    transform: scale(1.4) translateX(10px) translateY(-8px);
     opacity: 0;
   }
 }
@@ -1943,15 +1798,14 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+
   .cursor-fish-wrap,
-  .cursor-fish,
   .fish-2,
   .cursor-trail,
   .cursor-ripple {
     display: none;
-  }
-
-  body {
-    cursor: auto;
   }
 }

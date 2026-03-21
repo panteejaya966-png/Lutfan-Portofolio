@@ -74,113 +74,57 @@ function App() {
   if (loading) return
 
   const fishWrap = document.querySelector('.cursor-fish-wrap')
-  const fish = document.querySelector('.cursor-fish')
   const fish2 = document.querySelector('.fish-2')
   const trail = document.querySelector('.cursor-trail')
-  const ripple = document.querySelector('.cursor-ripple')
 
-  if (!fishWrap || !fish || !trail || !ripple) return
+  if (!fishWrap || !fish2 || !trail) return
 
   let mouseX = window.innerWidth / 2
   let mouseY = window.innerHeight / 2
-  let prevMouseX = mouseX
-  let prevMouseY = mouseY
 
   let fishX = mouseX
   let fishY = mouseY
 
-  let fish2X = mouseX - 30
-  let fish2Y = mouseY + 20
+  let fish2X = mouseX - 40
+  let fish2Y = mouseY + 24
 
-  let speed = 0
-  let idleTimer = null
   let rafId
 
-  const triggerRipple = () => {
-    ripple.style.left = `${mouseX}px`
-    ripple.style.top = `${mouseY}px`
-    ripple.classList.remove('show-ripple')
-    void ripple.offsetWidth
-    ripple.classList.add('show-ripple')
-  }
-
   const moveCursor = (e) => {
-    prevMouseX = mouseX
-    prevMouseY = mouseY
     mouseX = e.clientX
     mouseY = e.clientY
-
-    const vx = mouseX - prevMouseX
-    const vy = mouseY - prevMouseY
-    speed = Math.min(40, Math.sqrt(vx * vx + vy * vy))
-
-    if (idleTimer) clearTimeout(idleTimer)
-    idleTimer = setTimeout(() => {
-      triggerRipple()
-    }, 180)
   }
 
   const animate = () => {
-    fishX += (mouseX - fishX) * (0.06 + speed * 0.002)
-    fishY += (mouseY - fishY) * (0.06 + speed * 0.002)
+    fishX += (mouseX - fishX) * 0.08
+    fishY += (mouseY - fishY) * 0.08
 
-    fish2X += (fishX - fish2X) * 0.05
-    fish2Y += (fishY - fish2Y) * 0.05
+    fish2X += (fishX - fish2X) * 0.06
+    fish2Y += (fishY - fish2Y) * 0.06
 
     const dx = mouseX - fishX
     const dy = mouseY - fishY
-
-    const verticalTilt = Math.max(-22, Math.min(22, dy * 0.22))
-    const swimBob = Math.sin(Date.now() * 0.014) * 2
-    const chaseOffset = 26 + speed * 0.35
-    const fishScale = 1 + speed * 0.003
+    const tilt = Math.max(-18, Math.min(18, dy * 0.18))
 
     fishWrap.style.left = `${fishX}px`
-    fishWrap.style.top = `${fishY + swimBob}px`
+    fishWrap.style.top = `${fishY}px`
+
+    fish2.style.left = `${fish2X}px`
+    fish2.style.top = `${fish2Y}px`
 
     if (dx >= 0) {
-      fishWrap.style.transform =
-        `translate(-50%, -50%) scaleX(1) scale(${fishScale}) rotate(${verticalTilt}deg)`
-
-      trail.style.left = `${fishX + chaseOffset}px`
-      trail.style.top = `${fishY - 4 + swimBob}px`
-      trail.style.transform =
-        `translate(-50%, -50%) rotate(${verticalTilt * 0.35}deg)`
+      fishWrap.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
+      fish2.style.transform = `translate(-50%, -50%) scaleX(1) rotate(${tilt}deg)`
+      trail.style.left = `${fishX + 28}px`
     } else {
-      fishWrap.style.transform =
-        `translate(-50%, -50%) scaleX(-1) scale(${fishScale}) rotate(${-verticalTilt}deg)`
-
-      trail.style.left = `${fishX - chaseOffset}px`
-      trail.style.top = `${fishY - 4 + swimBob}px`
-      trail.style.transform =
-        `translate(-50%, -50%) rotate(${-verticalTilt * 0.35}deg)`
+      fishWrap.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
+      fish2.style.transform = `translate(-50%, -50%) scaleX(-1) rotate(${-tilt}deg)`
+      trail.style.left = `${fishX - 28}px`
     }
 
-    if (fish2) {
-  fish2.style.left = `${fish2X - 20}px`
-  fish2.style.top = `${fish2Y + swimBob + 10}px`
+    trail.style.top = `${fishY - 2}px`
+    trail.style.transform = `translate(-50%, -50%)`
 
-  const fish2Tilt = Math.max(-18, Math.min(18, dy * 0.18))
-
-  if (dx >= 0) {
-  fish2.style.transform =
-    `translate(-50%, -50%) scaleX(-1) rotate(${fish2Tilt}deg)`
-} else {
-  fish2.style.transform =
-    `translate(-50%, -50%) scaleX(1) rotate(${-fish2Tilt}deg)`
-}
-}
-
-    const runAway = 12 + speed * 0.5
-    if (dx >= 0) {
-      trail.style.left = `${fishX + chaseOffset + runAway}px`
-    } else {
-      trail.style.left = `${fishX - chaseOffset - runAway}px`
-    }
-
-    trail.style.opacity = `${0.72 + Math.min(0.28, speed * 0.02)}`
-
-    speed *= 0.92
     rafId = requestAnimationFrame(animate)
   }
 
@@ -190,7 +134,6 @@ function App() {
   return () => {
     window.removeEventListener('mousemove', moveCursor)
     cancelAnimationFrame(rafId)
-    if (idleTimer) clearTimeout(idleTimer)
   }
 }, [loading])
 
@@ -213,7 +156,6 @@ function App() {
       <div className="sea-dust"></div>
       <div className="cursor-fish-wrap">
         <img src={fish1} alt="cursor fish" className="cursor-fish" />
-        <span className="fish-mouth"></span>
       </div>
       <img src={fish1} alt="cursor fish 2" className="cursor-fish fish-2" />
       <div className="cursor-trail">
