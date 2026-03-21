@@ -1859,6 +1859,7 @@ body {
   opacity: 0.72;
   filter: drop-shadow(0 0 8px rgba(125, 211, 252, 0.45));
   will-change: transform, left, top;
+  transform: translate(-50%, -50%) scaleX(-1);
 }
 
 .cursor-trail {
